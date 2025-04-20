@@ -6,13 +6,21 @@ file_path = "GiaDat_HuongHoa_Streamlit.xlsx"
 df_khesanh = pd.read_excel(file_path, sheet_name="KHE SANH")
 df_laobao = pd.read_excel(file_path, sheet_name="LAO BAO")
 
+# Cấu hình trang
 st.set_page_config(page_title="Tra cứu giá đất đô thị Hướng Hóa", layout="centered")
-st.title("📍 Tra cứu bảng giá đất – Khe Sanh & Lao Bảo (2025)")
-# Hiển thị logo
-st.image("logo.jpg", width=120)  # Bạn có thể chỉnh size tùy ý
+
+# 👉 Hiển thị logo bên trái, tiêu đề bên phải
+col1, col2 = st.columns([1, 5])
+with col1:
+    st.image("logo.jpg", width=90)
+with col2:
+    st.title("📍 Tra cứu bảng giá đất – Khe Sanh & Lao Bảo (2025)")
+
+# Chọn khu vực
 khu_vuc = st.radio("Chọn khu vực", ["KHE SANH", "LAO BAO"])
 df = df_khesanh if khu_vuc == "KHE SANH" else df_laobao
 
+# Tra cứu tên đường
 if not df.empty and "Tên đường" in df.columns:
     st.markdown("### 🔍 Nhập tên đường (có thể gõ gần đúng):")
     input_duong = st.text_input("Ví dụ: Hung Vuong, Le Duan...")
