@@ -8,7 +8,8 @@ df_laobao = pd.read_excel(file_path, sheet_name="LAO BAO")
 
 st.set_page_config(page_title="Tra cứu giá đất đô thị Hướng Hóa", layout="centered")
 st.title("📍 Tra cứu bảng giá đất – Khe Sanh & Lao Bảo (2025)")
-
+# Hiển thị logo
+st.image("logo.png", width=120)  # Bạn có thể chỉnh size tùy ý
 khu_vuc = st.radio("Chọn khu vực", ["KHE SANH", "LAO BAO"])
 df = df_khesanh if khu_vuc == "KHE SANH" else df_laobao
 
